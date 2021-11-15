@@ -1,1 +1,103 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#1d8df5">
+    <title>Jx2H Site</title>
+    <meta name="keywords" content="jx2h, web, site">
+    <meta name="description" content="Jx2H 소개">
+    <link rel="stylesheet" href="/static/lib/fullpage.min.css"/>
+    <script src="/static/lib/jquery.min.js"></script>
+    <script src="/static/lib/fullpage.min.js"></script>
+    <link rel="stylesheet" href="/static/index/style.css"/>
+    <link rel="manifest" href="manifest.json" />
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+        const el = document.createElement('pwa-update');
+        document.body.appendChild(el);
+    </script>
+</head>
+<body>
+    <div id="fullpage">
+        <div id="s1" class="section">
+            <div class="div-center">
+                <div>
+                    <div id="sdd1">
+                        <span id="intro">Jx2H</span>
+                    </div>
+                </div>
+                <p>프로그래밍이 취미인 어느 고등학생의 사이트</p>
+                <!-- <p>클라이언트 IP - {{ .ip }}</p> -->
+                <p id="app-install">앱으로 설치하기</p>
+            </div>
+        </div>
+        <div id="s2" class="section">
+            <div class="div-center">
+                <div id="sd2">
+                    <div id="sdd2_1">
+                        <div>
+                            <h1>Hello!</h1>
+                        </div>
+                        <div>
+                            <span>프로그램 개발보다 연구를 좋아하는 학생입니다.</span>
+                            <p>현재, 서울 사립 인문계 고등학교 3학년 재학 중</p>
+                        </div>
+                    </div>
+                    <div id="sdd2_2">
+                        <div>
+                            <img src="/static/index/s2_img1.jpg" alt="인터넷 공학">
+                            <div>
+                                <h1>프로그래밍 이론에 관심 있어 합니다.</h1>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="/static/index/s2_img2.jpg" alt="물음표">
+                            <div>
+                                <h1>호기심이 많습니다.</h1>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="/static/index/s2_img3.jpg" alt="열정">
+                            <div>
+                                <h1>승부욕이 강합니다.</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+$(document).ready(function() {
+	$('#fullpage').fullpage({
+        sectionsColor: [
+            "#1c1c1c",
+            "#ffffff"
+        ],
+		autoScrolling:true,
+		scrollHorizontally: true,
+        navigation: true,
+        dragAndMove: true,
+        offsetSections: true,
+        slidesNavigation: true,
+        slidesNavPosition: "bottom"
+	});
 
+    // fullpage_api.moveTo(3);
+});
+window.addEventListener("load", function() {
+    document.cookie.split(";").forEach(v => {
+        let a = v.split("=");
+        if (v) console.log(a);
+    });
+});
+let installprompt = null;
+window.addEventListener("beforeinstallprompt", function(e) {
+    installprompt = e;
+});
+document.getElementById("app-install").onclick = function(e) {
+    if (installprompt) installprompt.prompt();
+};
+</script>
+</html>
